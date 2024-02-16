@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} {{ player_name }} {% endblock %}</h2>
+    <span class="badge badge-primary">{{ player_name }}</span>
+    <div id="myplot"></div>
+    <script type="module">
+        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Access the data passed from Flask
+            var data = {{ player_data | safe }};
+            var metric = "{{ metric }}";
+            // Create the plot once the data and library are available
+            const plot = Plot.plot({
+                marks: [
+                    Plot.ruleY([0]),
+                    Plot.lineY(data, {x: "SEASON_ID", y: metric})
+                ]
+            });
+
+            // Render the plot inside the chart container
+            document.getElementById('myplot').appendChild(plot);
+        });
+    </script>
+{% endblock %}

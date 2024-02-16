@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Select a Player to Analyze {% endblock %}</h1>
+
+<form method="POST">
+     <div class="form-group">
+   <label for="player">Player</label>
+      <select id="player" name="player">
+          {% for player in players %}
+           <option value="{{ player['full_name'] }}"> {{ player['full_name'] }} </option>`
+        {% endfor %}
+      </select>
+     </div>
+    <div class="form-group">
+   <label for="metric">Choose a Metric</label>
+      <select id="metric" name="metric">
+          {% for metric in metrics %}
+             <option value="{{ metric[0] }}"> {{ metric[1] }} </option>`
+          {% endfor %}
+      </select>
+     </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Analyze Player</button>
+    </div>
+</form>
+<hr>
+{% endblock %}
