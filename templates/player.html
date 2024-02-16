@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+
 {% block content %}
     <h2>{% block title %} {{ player_name }} {% endblock %}</h2>
     <span class="badge badge-primary">{{ player_name }}</span>
-    <div id="myplot"></div>
+    <div id="myplot" style="width: 80%; margin: 0 auto; text-align: center; margin-left: 20%;"></div>
     <script type="module">
         import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
@@ -13,10 +14,17 @@
             var metric = "{{ metric }}";
             // Create the plot once the data and library are available
             const plot = Plot.plot({
+                title: "For charts, an informative title",
+                subtitle: "Subtitle to follow with additional context",
+                caption: "Figure 1. A chart with a title, subtitle, and caption.",
+                grid: true,
                 marks: [
+                    Plot.frame(),
                     Plot.ruleY([0]),
-                    Plot.lineY(data, {x: "SEASON_ID", y: metric})
-                ]
+                    Plot.lineY(data, {x: "PLAYER_AGE", y: metric, stroke: "purple"}),
+                    Plot.areaY(data, {x: "PLAYER_AGE", y: metric, fillOpacity: 0.2})
+                ],
+
             });
 
             // Render the plot inside the chart container
