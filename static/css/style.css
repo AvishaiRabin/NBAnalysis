@@ -1,24 +1,68 @@
 h1 {
     border: hidden;
-    color: black;
+    color: white; /* Change text color to white */
     text-align: center;
     padding: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for visibility */
 }
 
 h2 {
-    border: hidden;
-    color: purple;
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px; /* Adjust font size as needed */
+    font-weight: bold; /* Make the font bold */
+    border: none; /* Use 'none' instead of 'hidden' for border */
+    color: #333; /* Dark gray */
     text-align: center;
     padding: 5px;
 }
 
+
 .title {
-    font-family: 'Arial', sans-serif;
-    font-size: 36px;
+     font-family: 'Poppins', sans-serif;
+    font-size: 48px;
     color: #333;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 50px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Example CSS to style the Observable Plot */
+.plot-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Light background with more transparency */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow to create depth */
+    border-radius: 5px; /* Rounded corners for the container */
+    padding: 20px; /* Add some padding around the plot */
+    margin: 20px auto; /* Center the plot container */
+    text-align: center; /* Center the contents */
+}
+
+
+.plot-title {
+    color: yellow; /* Dark text color */
+    font-size: 24px; /* Larger font size */
+    text-align: center; /* Center the title */
+}
+
+.plot-axis-labels {
+    color: yellow; /* Slightly darker text color */
+}
+
+.plot-grid-lines {
+    stroke: yellow; /* Lighter color for grid lines */
+}
+
+.plot-line {
+    stroke:yellow; /* Orange color for plot lines */
+    stroke-width: 2px; /* Thicker lines */
+}
+
+body {
+    background-image: url("/static/img/edgar-chaparro-_T-D4Bb-H88-unsplash.jpg");
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+    margin: 0; /* Remove default margin */
+    /* Add any additional styles you need */
 }
