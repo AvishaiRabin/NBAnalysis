@@ -3,7 +3,9 @@
 {% block content %}
     <div class="plot-container">
         <h2 class="plot-title">{% block title %} Career Stats {% endblock %}</h2>
-        <div id="player_career_chart" class="plot-chart"></div>
+        <div id="plot_wrapper"> <!-- Added wrapper div with ID 'plot_wrapper' -->
+            <div id="player_career_chart" class="plot-chart"></div>
+        </div>
     </div>
 
     <script>

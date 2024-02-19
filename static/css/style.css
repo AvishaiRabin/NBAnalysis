@@ -1,6 +1,17 @@
+/* style.css */
+
+body {
+    background-color: #f8f8f8;
+    background-image:
+        radial-gradient(circle at 10% 20%, #FFFFFF 10%, transparent 15%),
+        radial-gradient(circle at 80% 20%, #FFFFFF 10%, transparent 15%);
+    background-size: 30px 30px;
+    background-repeat: repeat;
+}
+
 h1 {
     border: hidden;
-    color: white; /* Change text color to white */
+    color: #008080; /* Change text color to white */
     text-align: center;
     padding: 25px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for visibility */
@@ -16,11 +27,10 @@ h2 {
     padding: 5px;
 }
 
-
 .title {
-     font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 48px;
-    color: #333;
+    color: #e;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -28,41 +38,50 @@ h2 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Example CSS to style the Observable Plot */
+/* Add this style for x-axis label */
+#player_career_chart .plot-container .plot-axis.x .plot-axis-label text {
+    font-size: 28px !important; /* Adjust the font size for x-axis label */
+}8
+
+/* Add this style for y-axis label */
+#player_career_chart .plot-container .plot-axis.y .plot-axis-label text {
+    font-size: 28px !important; /* Adjust the font size for y-axis label */
+}
+
+/* Add this style for x-axis ticks */
+#player_career_chart .plot-container .plot-axis.x .plot-tick text {
+    font-size: 25px !important; /* Adjust the font size for x-axis ticks */
+}
+
+/* Add this style for y-axis ticks */
+#player_career_chart .plot-container .plot-axis.y .plot-tick text {
+    font-size: 25px !important; /* Adjust the font size for y-axis ticks */
+}
+
+/* Adjust the left margin to move the chart to the left */
+#player_career_chart {
+    width: calc(66.666% - 40px); /* Set width to 2/3 of the screen */
+    margin-margin-right: 25%; /* Adjust the left margin as needed */
+}
+
+
+
+
+/* Additional styles for the plot container */
 .plot-container {
-    background-color: rgba(0, 0, 0, 0.5); /* Light background with more transparency */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow to create depth */
-    border-radius: 5px; /* Rounded corners for the container */
-    padding: 20px; /* Add some padding around the plot */
-    margin: 20px auto; /* Center the plot container */
-    text-align: center; /* Center the contents */
+    width: 100%; /* Ensure the plot container spans the entire width */
+    overflow: hidden; /* Hide overflow to prevent horizontal scroll */
 }
 
-
-.plot-title {
-    color: yellow; /* Dark text color */
-    font-size: 24px; /* Larger font size */
-    text-align: center; /* Center the title */
+/* Additional styles for the navbar and body */
+.navbar {
+    background-color: #007bff; /* Blue navbar */
+    border-bottom: 1px solid #0056b3; /* Darker blue border */
 }
 
-.plot-axis-labels {
-    color: yellow; /* Slightly darker text color */
+.navbar-brand {
+    color: #fff; /* White text for brand */
+    font-weight: bold; /* Bold font weight */
 }
 
-.plot-grid-lines {
-    stroke: yellow; /* Lighter color for grid lines */
-}
-
-.plot-line {
-    stroke:yellow; /* Orange color for plot lines */
-    stroke-width: 2px; /* Thicker lines */
-}
-
-body {
-    background-image: url("/static/img/edgar-chaparro-_T-D4Bb-H88-unsplash.jpg");
-    background-size: cover; /* Cover the entire background */
-    background-position: center; /* Center the background image */
-    height: 100vh; /* Set the height of the body to 100% of the viewport height */
-    margin: 0; /* Remove default margin */
-    /* Add any additional styles you need */
-}
+.navbar-nav .
