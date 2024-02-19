@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import pandas as pd
 from configs import *
 from nba_api.stats.endpoints import playercareerstats
 from flask import Flask, render_template, request, url_for, flash, redirect, jsonify
@@ -34,13 +35,17 @@ def get_player_name_by_id(player_id):
     conn.close()
     return player_name
 
-def get_player_stats_as_list(player_id):
+def get_player_stats(player_id):
     player_dict = json.loads(playercareerstats.PlayerCareerStats(player_id).get_json())['resultSets'][0]
     player_stats_list = []
     for row in player_dict['rowSet']:
         player_stats_list.append({player_dict['headers'][i]: row[i] for i in range(len(row))})
-    return player_stats_list
-
+    # Create a temporary table so we can group by season ID and drop the total when a player is traded
+    tbl = pd.DataFrame(player_stats_list)
+    tbl = tbl[tbl['TEAM_ABBREVIATION']!='TOT']
+    tbl = tbl.groupby('SEASON_ID').sum()
+    tbl['SEASON'] = tbl.index
+    return tbl
 
 app = Flask(__name__)
 
@@ -51,12 +56,12 @@ def index():
 @app.route('/player/<int:player_id>/<metric>')
 def player(player_id, metric):
     player_name = get_player_name_by_id(player_id)
-    player_list = get_player_stats_as_list(player_id)
+    player_list = get_player_stats(player_id)
     metric_title = player_stats_dict[metric]
     return render_template(
         'player.html',
         player_name=player_name,
-        player_data=player_list,
+        player_data=player_list.to_dict(orient='records'),
         metric=metric,
         metric_title=metric_title)
 

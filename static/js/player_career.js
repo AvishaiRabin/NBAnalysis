@@ -9,30 +9,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const player_name = window.player_name;
     const title = `Career ${metric_title} Stats for ${player_name}`;
 
+    // Extract unique seasons from the data
+    const seasons = Array.from(new Set(data.map(d => d.SEASON)));
+
     // Create the plot once the data and library are available
     const plot = Plot.plot({
-        height: 500,
+        height: 600,
         width: 1300,
         title: title,
-        subtitle: "Subtitle to follow with additional context",
-        caption: "Figure 1. A chart with a title, subtitle, and caption.",
         grid: true,
         style: {
             grid: {
-                stroke: "yellow" // Set the stroke color of grid lines to yellow
+                stroke: "teal" // Set the stroke color of grid lines to teal
+            },
+            xAxis: {
+                stroke: "teal", // Set the stroke color of x-axis to teal
+            },
+            yAxis: {
+                stroke: "teal" // Set the stroke color of y-axis to teal
             }
         },
         marks: [
             Plot.frame(),
             Plot.ruleY([0]),
-            Plot.lineY(data, {x: "PLAYER_AGE", y: metric, stroke: "yellow"}),
-            Plot.areaY(data, {x: "PLAYER_AGE", y: metric, fill: "orange", fillOpacity: 0.2})
+            Plot.lineY(data, {x: "SEASON", y: metric, stroke: "#007B77", tip: true}),
+            Plot.areaY(data, {x: "SEASON", y: metric, fill: "#00524C", fillOpacity: 0.6}),
         ],
+        // Define the x-scale as point scale with seasons
+        x: {
+            label: 'Season',
+            type: 'point',
+            domain: seasons // Unique seasons as domain values
+        }
     });
 
     // Render the plot inside the chart container
     document.getElementById('player_career_chart').appendChild(plot);
-
     // Move the plot to the right
     document.getElementById('plot_wrapper').style.marginRight = '-50%'; // Adjust the left margin as needed
 });
