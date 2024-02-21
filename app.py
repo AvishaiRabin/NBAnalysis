@@ -1,51 +1,14 @@
-import sqlite3
+
 import json
 import pandas as pd
 from configs import *
-from nba_api.stats.endpoints import playercareerstats
 from flask import Flask, render_template, request, url_for, flash, redirect, jsonify
-from werkzeug.exceptions import abort
+from python_funcs.players import *
+from python_funcs.sql_helper import *
 
 import os
 os.environ['FLASK_DEBUG'] = '1'
 
-def get_db_connection():
-    conn = sqlite3.connect('players.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
-def get_player_by_id(player_id):
-    conn = get_db_connection()
-    player = conn.execute('SELECT * FROM players WHERE id = ?',
-                        (player_id,)).fetchone()
-    conn.close()
-    return player
-
-def get_player_id_by_name(full_name):
-    conn = get_db_connection()
-    player_id = conn.execute('SELECT id FROM players WHERE full_name = ?',
-                        (full_name,)).fetchone()[0]
-    conn.close()
-    return player_id
-
-def get_player_name_by_id(player_id):
-    conn = get_db_connection()
-    player_name = conn.execute('SELECT full_name FROM players WHERE id = ?',
-                        (player_id,)).fetchone()[0]
-    conn.close()
-    return player_name
-
-def get_player_stats(player_id):
-    player_dict = json.loads(playercareerstats.PlayerCareerStats(player_id).get_json())['resultSets'][0]
-    player_stats_list = []
-    for row in player_dict['rowSet']:
-        player_stats_list.append({player_dict['headers'][i]: row[i] for i in range(len(row))})
-    # Create a temporary table so we can group by season ID and drop the total when a player is traded
-    tbl = pd.DataFrame(player_stats_list)
-    tbl = tbl[tbl['TEAM_ABBREVIATION']!='TOT']
-    tbl = tbl.groupby('SEASON_ID').sum()
-    tbl['SEASON'] = tbl.index
-    return tbl
 
 app = Flask(__name__)
 
@@ -73,7 +36,7 @@ def create():
         player_id = get_player_id_by_name(player_name)
         return redirect(url_for("player",player_id=player_id, metric=metric))
     else:
-        conn = get_db_connection()
+        conn = get_db_connection('players')
         players = conn.execute('SELECT full_name FROM players order by full_name asc').fetchall()
         metrics = player_stats_dict.items()
         conn.close()

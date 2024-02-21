@@ -41,7 +41,16 @@ h2 {
 /* Add this style for x-axis label */
 #player_career_chart .plot-container .plot-axis.x .plot-axis-label text {
     font-size: 28px !important; /* Adjust the font size for x-axis label */
-}8
+}
+/* Add this style for tooltip within the player career chart */
+#player_career_chart g[aria-label="tip"] text {
+    font-size: 14px; /* Adjust the font size for the tooltip */
+    background-color: #fff; /* Background color of the tooltip */
+    color: #333; /* Text color of the tooltip */
+    border: 1px solid #ccc; /* Border of the tooltip */
+    border-radius: 4px; /* Border radius of the tooltip */
+    padding: 8px; /* Padding inside the tooltip */
+}
 
 /* Add this style for y-axis label */
 #player_career_chart .plot-container .plot-axis.y .plot-axis-label text {
@@ -63,8 +72,6 @@ h2 {
     width: calc(66.666% - 40px); /* Set width to 2/3 of the screen */
     margin-margin-right: 25%; /* Adjust the left margin as needed */
 }
-
-
 
 
 /* Additional styles for the plot container */
