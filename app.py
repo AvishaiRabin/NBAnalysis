@@ -13,8 +13,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/standings/')
+def standings():
     league_data = get_league_stats()
-    return render_template('index.html', league_data=league_data)
+    return render_template('standings.html', league_data=league_data)
 
 @app.route('/player/<int:player_id>/<metric>')
 def player(player_id, metric):
