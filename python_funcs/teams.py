@@ -1,6 +1,6 @@
 import pandas as pd
 from nba_api.stats.endpoints import TeamGameLog
-from sql_helper import get_db_connection
+from python_funcs.sql_helper import get_db_connection
 
 
 def get_all_teams():
@@ -54,3 +54,20 @@ def get_team_logs_by_year(year=2023):
     final_teams_data['season'] = year
 
     return final_teams_data
+
+def get_league_stats():
+    conn = get_db_connection('team_logs')
+    league_stats = conn.execute('SELECT W, W + L as Games_Played, nickname FROM team_logs',
+                               ).fetchall()
+    league_data = []
+    for row in league_stats:
+        league_data.append({
+            'Wins': row[0],
+            'Games': row[1],
+            'Team': row[2]
+            # Add more columns as needed
+        })
+    conn.close()
+    return league_data
+
+get_league_stats()

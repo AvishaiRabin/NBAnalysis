@@ -67,6 +67,10 @@ h2 {
     font-size: 25px !important; /* Adjust the font size for y-axis ticks */
 }
 
+.plot-title {
+    font-size: 35px; /* Adjust the font size as needed */
+}
+
 /* Adjust the left margin to move the chart to the left */
 #player_career_chart {
     width: calc(66.666% - 40px); /* Set width to 2/3 of the screen */
@@ -74,10 +78,14 @@ h2 {
 }
 
 
-/* Additional styles for the plot container */
 .plot-container {
-    width: 100%; /* Ensure the plot container spans the entire width */
-    overflow: hidden; /* Hide overflow to prevent horizontal scroll */
+    width: 100%; /* Make the container stretch to full width */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.plot-chart {
+    width: 100%; /* Make the chart fill the entire width of its container */
+    height: auto; /* Allow the height to adjust according to the content */
 }
 
 /* Additional styles for the navbar and body */

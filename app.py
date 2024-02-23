@@ -1,10 +1,9 @@
 
-import json
-import pandas as pd
 from configs import *
 from flask import Flask, render_template, request, url_for, flash, redirect, jsonify
 from python_funcs.players import *
 from python_funcs.sql_helper import *
+from python_funcs.teams import *
 
 import os
 os.environ['FLASK_DEBUG'] = '1'
@@ -14,7 +13,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    league_data = get_league_stats()
+    return render_template('index.html', league_data=league_data)
 
 @app.route('/player/<int:player_id>/<metric>')
 def player(player_id, metric):

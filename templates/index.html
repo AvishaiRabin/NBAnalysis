@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="title">{% block title %} Welcome to NBA Analysis {% endblock %}</h1>
-<h2>by Avi Rabin</h2>
+    <div class="plot-container">
+        <h2 class="plot-title">{% block title %} 2023-2024 Season {% endblock %}</h2>
+        <div id="plot_wrapper"> <!-- Added wrapper div with ID 'plot_wrapper' -->
+            <div id="league_standings_chart" class="plot-chart"></div>
+        </div>
+    </div>
+
+    <script>
+        var league_data = {{ league_data | tojson | safe }};
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/league_standings.js') }}"></script>
 {% endblock %}
