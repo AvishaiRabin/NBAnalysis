@@ -2,6 +2,7 @@
 from configs import *
 from flask import Flask, render_template, request, url_for, flash, redirect, jsonify
 from python_funcs.players import *
+from python_funcs.livedata import *
 from python_funcs.sql_helper import *
 from python_funcs.teams import *
 
@@ -13,7 +14,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    scoreboard = get_today_scoreboard()
+    return render_template('index.html', scoreboard=scoreboard.to_dict(orient='records'))
 
 @app.route('/standings/')
 def standings():
