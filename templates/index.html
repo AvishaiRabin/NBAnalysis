@@ -1,3 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="upcoming-games-container">
+    <div class="upcoming-games">
+        <h2 class="upcoming-games-title">Upcoming Games</h2>
+
+        <!-- Loading Widget -->
+        <div class="loading-widget">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Table (Hidden by Default) -->
+        <table class="game-table" style="display: none;">
+            <tr>
+                <th>Start Time</th>
+                <th>Game Time</th>
+                <th>Matchup</th>
+                <th>Score</th>
+            </tr>
+            {% for game in scoreboard %}
+            <tr>
+                <td>{{ game['start_time'] }}</td>
+                <td>{{ game['game_status_text'] }}</td>
+                <td>{{ game['matchup'] }}</td>
+                <td>{{ game['score'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+ <script type="module" src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
+
 {% endblock %}

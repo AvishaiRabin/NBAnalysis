@@ -1,7 +1,7 @@
 import sqlite3
 from nba_api.stats.static import players, teams
-from teams import get_team_logs_by_year
-from sql_helper import *
+from python_funcs.teams import get_team_logs_by_year
+from python_funcs.sql_helper import *
 def insert_players(connection):
     """Inserts players into the 'players' table."""
     cursor = connection.cursor()
@@ -41,6 +41,10 @@ def update_team_logs_db(year=None):
     """Updates the 'team_logs' table."""
     # Call the function to fetch all teams
     tbl = get_team_logs_by_year()
+
+    for i in tbl.columns:
+        print(i)
+        print(tbl[i])
 
     # Establishing a connection to the database
     connection = establish_connection('../dbs/team_logs.db')
