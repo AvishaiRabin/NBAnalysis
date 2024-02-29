@@ -1,6 +1,7 @@
 from datetime import timezone
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
+from nba_api.stats.endpoints import leaguestandingsv3
 import pandas as pd
 
 def time_converter(time_str):
@@ -36,3 +37,13 @@ def get_today_scoreboard():
         todays_scoreboard = pd.concat([todays_scoreboard, pd.DataFrame(this_game, index=[0])], ignore_index=True)
 
     return todays_scoreboard
+
+def get_standings(year=2023):
+    """
+    Query's a given season's standings (defaults to the current one)
+    """
+    standings = leaguestandingsv3.LeagueStandingsV3(season=year).get_data_frames()[0]
+
+    standings = standings[['TeamName', 'Conference', 'PlayoffRank', 'Division', 'Record', 'L10', 'ConferenceGamesBack']]
+
+    return standings

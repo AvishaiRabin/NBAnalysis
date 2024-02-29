@@ -14,8 +14,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/data')
+def get_data():
     scoreboard = get_today_scoreboard()
-    return render_template('index.html', scoreboard=scoreboard.to_dict(orient='records'))
+    standings = get_standings()
+    print('data loaded')
+    return jsonify({
+        'upcomingGames': scoreboard.to_dict(orient='records'),
+        'standings': standings.to_dict(orient='records')
+    })
 
 @app.route('/standings/')
 def standings():

@@ -27,6 +27,7 @@ h1 {
 #player_career_chart .plot-container .plot-axis.x .plot-axis-label text {
     font-size: 28px !important; /* Adjust the font size for x-axis label */
 }
+
 /* Add this style for tooltip within the player career chart */
 #player_career_chart g[aria-label="tip"] text {
     font-size: 14px; /* Adjust the font size for the tooltip */
@@ -62,7 +63,6 @@ h1 {
     margin-margin-right: 25%; /* Adjust the left margin as needed */
 }
 
-
 .plot-container {
     width: 100%; /* Make the container stretch to full width */
     margin: 0 auto; /* Center the container horizontally */
@@ -84,83 +84,95 @@ h1 {
     font-weight: bold; /* Bold font weight */
 }
 
-.upcoming-games {
-    width: 33%; /* Adjust width as needed */
-    background-color: #f8f8f8;
-    color: black;
-    padding: 20px;
-    font-family: Arial, sans-serif; /* Choose a good font */
-    font-size: 14px; /* Adjust font size as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    position: fixed;
-    top: 10%; /* Adjust top position as needed */
-    left: 5%; /* Adjust left position as needed */
-}
-
-.upcoming-games h2 {
-    margin-bottom: 20px;
-    font-size: 36px; /* Increase font size */
-    color: #333;
-    text-align: center; /* Align the h2 text to the center */
-    font-family: 'Poppins', sans-serif; /* Apply custom font */
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1px; /* Add letter spacing for a creative effect */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add text shadow for visibility */
-}
-
 .upcoming-games-container {
     max-width: 800px; /* Adjust as needed */
-    margin: 0 auto;
+    margin: 0;
+    height: 70vh; /* Set a fixed height for the container */
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    position: fixed;
+    top: 10%; /* Adjust top position as needed */
+    left: 2%; /* Move the container further to the left */
+}
+.current-standings-container {
+    max-width: 1000px; /* Adjust as needed */
+    margin: 0;
+    height: 70vh; /* Set a fixed height for the container */
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    position: fixed;
+    top: 10%; /* Adjust top position as needed */
+    right: 2%; /* Move the container further to the right */
 }
 
-.upcoming-games table {
+.upcoming-games-table,
+.current-standings-table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.upcoming-games th, .upcoming-games td {
+.upcoming-games,
+.current-standings {
+    width: calc(100% - 40px);
+    background-color: #f8f8f8;
+    color: black;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.upcoming-games h2,
+.current-standings h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upcoming-games th,
+.current-standings th,
+.upcoming-games td,
+.current-standings td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.upcoming-games th {
+.upcoming-games th,
+.current-standings th {
     background-color: #f2f2f2;
 }
 
-.upcoming-games tbody tr:nth-child(even) {
+.upcoming-games tbody tr:nth-child(even),
+.current-standings tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.upcoming-games h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.upcoming-games {
-    margin-top: 20px;
-}
-
-.upcoming-games tbody tr:hover {
+.upcoming-games tbody tr:hover,
+.current-standings tbody tr:hover {
     background-color: #e0e0e0;
     transition: background-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .upcoming-games table {
-        font-size: 14px;
-    }
-}
-
-/* Loading Widget Styles */
-.loading-widget {
+.upcoming-games .loading-widget,
+.current-standings .loading-widget {
     text-align: center;
     margin-top: 20px;
+}
+
+.upcoming-games .loading-widget p,
+.current-standings .loading-widget p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #007bff;
 }
 
 .loading-spinner {
@@ -173,17 +185,23 @@ h1 {
     margin: 0 auto;
 }
 
+.standings-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* Align items to the right side */
+}
+
+.current-standings-container {
+    max-width: 33%; /* Adjust width as needed */
+    margin-left: 20px; /* Adjust spacing between containers */
+}
+
+.radio-container {
+    margin-left: 20px; /* Adjust spacing between containers */
+}
+
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-.loading-widget p {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #007bff; /* Color of the loading text */
-}
-
-
-
-.navbar-nav .
