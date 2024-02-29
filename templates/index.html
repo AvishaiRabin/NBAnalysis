@@ -5,31 +5,47 @@
         <h2 class="upcoming-games-title">Upcoming Games</h2>
 
         <!-- Loading Widget -->
-        <div class="loading-widget">
+        <div class="loading-widget" id="loading-widget">
             <div class="loading-spinner"></div>
             <p>Loading...</p>
         </div>
 
-        <!-- Table (Hidden by Default) -->
-        <table class="game-table" style="display: none;">
+        <table id="upcoming-games-table" class="upcoming-games-table" style="display: none;">
             <tr>
                 <th>Start Time</th>
                 <th>Game Time</th>
                 <th>Matchup</th>
                 <th>Score</th>
             </tr>
-            {% for game in scoreboard %}
-            <tr>
-                <td>{{ game['start_time'] }}</td>
-                <td>{{ game['game_status_text'] }}</td>
-                <td>{{ game['matchup'] }}</td>
-                <td>{{ game['score'] }}</td>
-            </tr>
-            {% endfor %}
         </table>
     </div>
 </div>
+<div class="standings-wrapper">
+    <div class="radio-container">
+        <input type="radio" id="east-radio" name="standings-option" value="East">
+        <label for="east-radio">East</label>
+        <input type="radio" id="west-radio" name="standings-option" value="West">
+        <label for="west-radio">West</label>
+    </div>
+    <div class="current-standings-container">
+        <div class="current-standings">
+            <h2 class="current-standings-title">Current Standings</h2>
 
- <script type="module" src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
+            <!-- Loading Widget -->
+            <div class="loading-widget" id="loading-widget-standings">
+                <div class="loading-spinner"></div>
+                <p>Loading...</p>
+            </div>
 
+            <table id="current-standings-table" class="current-standings-table" style="display: none;">
+                <tr>
+                    <th>Team Name</th>
+                    <th>Seeding</th>
+                    <th>Record</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="module" src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
 {% endblock %}
