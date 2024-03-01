@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <div class="plot-container">
         <h2 class="plot-title">{% block title %} Career Stats {% endblock %}</h2>
@@ -15,4 +14,6 @@
         var player_name = "{{ player_name }}";
     </script>
     <script type="module" src="{{ url_for('static', filename='js/player_career.js') }}"></script>
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/player_career.css') }}">
 {% endblock %}

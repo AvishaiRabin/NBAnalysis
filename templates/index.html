@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="upcoming-games-container">
+<div class="upcoming-games">
     <div class="upcoming-games">
         <h2 class="upcoming-games-title">Upcoming Games</h2>
 
@@ -21,31 +21,31 @@
     </div>
 </div>
 <div class="standings-wrapper">
+    <h2 class="standings-wrapper">Current Standings</h2>
     <div class="radio-container">
         <input type="radio" id="east-radio" name="standings-option" value="East">
         <label for="east-radio">East</label>
         <input type="radio" id="west-radio" name="standings-option" value="West">
         <label for="west-radio">West</label>
     </div>
-    <div class="current-standings-container">
-        <div class="current-standings">
-            <h2 class="current-standings-title">Current Standings</h2>
-
-            <!-- Loading Widget -->
-            <div class="loading-widget" id="loading-widget-standings">
-                <div class="loading-spinner"></div>
-                <p>Loading...</p>
-            </div>
-
-            <table id="current-standings-table" class="current-standings-table" style="display: none;">
-                <tr>
-                    <th>Team Name</th>
-                    <th>Seeding</th>
-                    <th>Record</th>
-                </tr>
-            </table>
+    <div class="current-standings">
+        <!-- Loading Widget -->
+        <div class="loading-widget" id="loading-widget-standings">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
         </div>
+
+        <table id="current-standings-table" class="current-standings-table" style="display: none;">
+            <tr>
+                <th>Team Name</th>
+                <th>Seeding</th>
+                <th>Record</th>
+            </tr>
+        </table>
     </div>
 </div>
+<!-- Import CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/current_standings.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/upcoming_games.css') }}">
 <script type="module" src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
 {% endblock %}
