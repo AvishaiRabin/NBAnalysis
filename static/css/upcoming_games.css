@@ -1,0 +1,57 @@
+.upcoming-games {
+    max-width: 33%;
+    margin-left: auto; /* Auto margin to push it to the right */
+    margin-right: 20px; /* Adjust spacing between containers */
+    height: 60vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 10%;
+    left: 2%; /* Position relative to the left edge of the viewport */
+    background-color: #f8f8f8;
+    color: black;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.upcoming-games-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.upcoming-games h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upcoming-games th {
+    background-color: #f2f2f2;
+}
+
+.upcoming-games td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.upcoming-games tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.upcoming-games tbody tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+.upcoming-games .loading-widget {
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+}

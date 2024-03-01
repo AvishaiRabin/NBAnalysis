@@ -1,0 +1,35 @@
+#player_career_chart .plot-container .plot-axis.x .plot-axis-label text {
+    font-size: 28px !important; /* Adjust the font size for x-axis label */
+}
+
+/* Add this style for tooltip within the player career chart */
+#player_career_chart g[aria-label="tip"] text {
+    font-size: 14px; /* Adjust the font size for the tooltip */
+    background-color: #fff; /* Background color of the tooltip */
+    color: #333; /* Text color of the tooltip */
+    border: 1px solid #ccc; /* Border of the tooltip */
+    border-radius: 4px; /* Border radius of the tooltip */
+    padding: 8px; /* Padding inside the tooltip */
+}
+
+/* Adjust the left margin to move the chart to the left */
+#player_career_chart {
+    width: calc(66.666% - 40px); /* Set width to 2/3 of the screen */
+    margin-margin-right: 25%; /* Adjust the left margin as needed */
+}
+
+
+/* Add this style for y-axis label */
+#player_career_chart .plot-container .plot-axis.y .plot-axis-label text {
+    font-size: 28px !important; /* Adjust the font size for y-axis label */
+}
+
+/* Add this style for x-axis ticks */
+#player_career_chart .plot-container .plot-axis.x .plot-tick text {
+    font-size: 25px !important; /* Adjust the font size for x-axis ticks */
+}
+
+/* Add this style for y-axis ticks */
+#player_career_chart .plot-container .plot-axis.y .plot-tick text {
+    font-size: 25px !important; /* Adjust the font size for y-axis ticks */
+}
