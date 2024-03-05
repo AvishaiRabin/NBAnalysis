@@ -5,54 +5,59 @@
     top: 10%;
     right: 2%;
     display: flex;
-    justify-content: center; /* Center the content horizontally */
-    flex-direction: row; /* Set flex direction to column */
+    flex-direction: column;
+    align-items: center;
 }
 
-.radio-container {
-    max-width: 25%;
-    margin-top: 10%;
-    position: relative;
-    flex: 1; /* Let the container grow to fill remaining space */
+.standings-title {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.current-standings {
-    max-width: 100%;
-    margin-top: 10%;
-    height: 60vh;
-    overflow-y: auto;
-    position: relative;
-    background-color: #f8f8f8;
-    color: black;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    flex: 1; /* Let the container grow to fill remaining space */
-}
-
-
-.current-standings-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px;
-    table-layout: absolute;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.standings-wrapper h2 {
+.standings-title h2 {
     font-size: 25px;
     color: #333;
-    text-align: center;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    width: 100%;
+}
+
+.conference-radio-container, .current-standings {
+    margin-top: 10px;
+}
+
+.current-standings {
+    height: 60vh;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.current-standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
 .current-standings th {
     background-color: #f2f2f2;
-    width: 33%; /* Adjust the width of table header cells */
+    text-align: center;
+    width: 33%;
 }
 
 .current-standings td {
@@ -64,13 +69,14 @@
 .current-standings tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
 .current-standings tbody tr:hover {
     background-color: #e0e0e0;
     transition: background-color 0.3s ease;
 }
+
 .current-standings .loading-widget {
     text-align: center;
     margin-top: 20px;
     color: #007bff;
 }
-
