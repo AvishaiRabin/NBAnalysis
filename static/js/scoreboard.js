@@ -7,32 +7,73 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/data')
     .then(response => response.json())
     .then(data => {
-        // Populate upcoming games table
-        const upcomingGamesTable = document.getElementById('upcoming-games-table');
-        data.upcomingGames.forEach(game => {
-            const row = upcomingGamesTable.insertRow();
-            row.insertCell().textContent = game.start_time;
-            row.insertCell().textContent = game.game_status_text;
-            row.insertCell().textContent = game.matchup;
-            row.insertCell().textContent = game.score;
+        // Function to populate tables with filtered data
+        function populateTables(filteredData) {
+            // Populate upcoming games table
+            const upcomingGamesTable = document.getElementById('upcoming-games-table');
+            const upcomingGamesBody = upcomingGamesTable.querySelector('tbody');
+            const upcomingGamesRows = upcomingGamesBody.querySelectorAll('tr');
+
+            // Clear existing rows except the header row
+            for (let i = 1; i < upcomingGamesRows.length; i++) {
+                upcomingGamesRows[i].remove();
+            }
+
+            filteredData.upcomingGames.forEach(game => {
+                const row = upcomingGamesBody.insertRow();
+                row.insertCell().textContent = game.start_time;
+                row.insertCell().textContent = game.game_status_text;
+                row.insertCell().textContent = game.matchup;
+                row.insertCell().textContent = game.score;
+            });
+
+            // Remove loading widget and show table
+            document.getElementById('loading-widget').style.display = 'none';
+            upcomingGamesTable.style.display = 'table';
+
+            // Populate current standings table
+            const currentStandingsTable = document.getElementById('current-standings-table');
+            const currentStandingsBody = currentStandingsTable.querySelector('tbody');
+            const currentStandingsRows = currentStandingsBody.querySelectorAll('tr');
+
+            // Clear existing rows except the header row
+            for (let i = 1; i < currentStandingsRows.length; i++) {
+                currentStandingsRows[i].remove();
+            }
+
+            filteredData.standings.forEach(team => {
+                const row = currentStandingsBody.insertRow();
+                row.insertCell().textContent = team.TeamName;
+                row.insertCell().textContent = team.PlayoffRank;
+                row.insertCell().textContent = team.Record;
+            });
+
+            // Remove loading widget and show table
+            document.getElementById('loading-widget-standings').style.display = 'none';
+            currentStandingsTable.style.display = 'table';
+        }
+
+
+
+        // Function to filter data based on selected option
+        function filterData(data, value) {
+            return {
+                upcomingGames: data.upcomingGames,
+                standings: data.standings.filter(team => team['Conference'] === value)
+            }
+        }
+
+
+        // Add event listener to radio inputs within radio-container
+        document.querySelectorAll('.conference-radio-container input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const filteredData = filterData(data, this.value);
+                populateTables(filteredData);
+            });
         });
 
-        // Remove loading widget and show table
-        document.getElementById('loading-widget').style.display = 'none';
-        upcomingGamesTable.style.display = 'table';
-
-        // Populate current standings table
-        const currentStandingsTable = document.getElementById('current-standings-table');
-        data.standings.forEach(team => {
-            const row = currentStandingsTable.insertRow();
-            row.insertCell().textContent = team.TeamName;
-            row.insertCell().textContent = team.PlayoffRank;
-            row.insertCell().textContent = team.Record;
-        });
-
-        // Remove loading widget and show table
-        document.getElementById('loading-widget-standings').style.display = 'none';
-        currentStandingsTable.style.display = 'table';
+        // Initial population of tables with all data
+        populateTables(data);
     })
     .catch(error => {
         console.error('Error fetching data:', error);
