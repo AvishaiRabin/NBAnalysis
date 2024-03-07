@@ -1,3 +1,4 @@
+/* General styling for standings wrapper */
 .standings-wrapper {
     height: 55vh;
     width: 35%;
@@ -9,6 +10,7 @@
     align-items: center;
 }
 
+/* Styling for the table title */
 .standings-title {
     text-align: center;
     margin-bottom: 20px;
@@ -23,60 +25,132 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Styling for content wrapper */
 .content-wrapper {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the top */
+    align-items: flex-start;
     width: 100%;
 }
 
+/* Styling for radio container and current standings */
 .conference-radio-container, .current-standings {
     margin-top: 10px;
 }
 
+/* Styling for current standings table */
 .current-standings {
-    height: 60vh;
-    overflow-y: auto;
-    background-color: #f8f8f8;
+    height: 60vh; /* Fixed height */
     color: black;
     font-family: Arial, sans-serif;
     font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     flex: 1;
     margin-left: 10px;
-}
-
-.current-standings-table {
-    width: 100%;
+    overflow: auto; /* Hide overflow content */
     border-collapse: collapse;
+    border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.current-standings th {
-    background-color: #f2f2f2;
-    text-align: center;
-    width: 33%;
+/* Styling for images within current standings */
+.current-standings img {
+    max-width: 50px;
+    max-height: 50px;
 }
 
+/* Styling for current standings table */
+.current-standings-table {
+    width: 100%;
+    height: 50%;
+}
+
+/* Styling for current standings table header */
+.current-standings th {
+    background-color: #47a0ff;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the header is on top */
+    line-height: 40px; /* Adjust the line height to match the height of table rows */
+}
+
+/* Styling for current standings table body */
 .current-standings td {
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    background-color: #fff; /* Match the background color of the table */
 }
 
+/* Allow tbody to scroll */
+.current-standings tbody {
+    height: 10%; /* Fixed height */
+    overflow-y: auto;
+}
+
+/* Styling for alternating row colors */
 .current-standings tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+/* Styling for hover effect on rows */
 .current-standings tbody tr:hover {
     background-color: #e0e0e0;
     transition: background-color 0.3s ease;
 }
 
+/* Styling for loading widget */
 .current-standings .loading-widget {
     text-align: center;
     margin-top: 20px;
     color: #007bff;
+}
+
+/* Styling for radio container */
+.conference-radio-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.conference-radio-container input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.conference-radio-container label {
+    background-color: #e4e4e4;
+    color: #333;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    padding: 10px 20px;
+    margin-right: -1px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+}
+
+.conference-radio-container label:hover {
+    cursor: pointer;
+}
+
+.conference-radio-container input:checked + label {
+    background-color: #47a0ff;
+    box-shadow: none;
+}
+
+.conference-radio-container label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.conference-radio-container label:last-of-type {
+    border-radius: 0 4px 4px 0;
 }

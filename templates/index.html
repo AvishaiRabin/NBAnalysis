@@ -1,32 +1,39 @@
 {% extends 'base.html' %}
-{% block content %}
-<div class="upcoming-games">
-    <div class="upcoming-games">
-        <h2 class="upcoming-games-title">Upcoming Games</h2>
 
-        <!-- Loading Widget -->
+{% block content %}
+<div class="games-wrapper">
+    <div class="games-title">
+        <h2>Upcoming Games</h2>
+    </div>
+    <!-- Loading Widget -->
+    <div class="upcoming-games">
         <div class="loading-widget" id="loading-widget">
             <div class="loading-spinner"></div>
             <p>Loading...</p>
         </div>
-
         <table id="upcoming-games-table" class="upcoming-games-table" style="display: none;">
-            <tr>
-                <th>Start Time</th>
-                <th>Game Time</th>
-                <th>Matchup</th>
-                <th>Score</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Start Time</th>
+                    <th>Game Time</th>
+                    <th>Matchup</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Upcoming games will be dynamically added here -->
+            </tbody>
         </table>
     </div>
 </div>
+
 <div class="standings-wrapper">
     <div class="standings-title">
-        <h2>Basketball Current Standings</h2>
+        <h2>Current Standings</h2>
     </div>
     <div class="content-wrapper">
         <div class="conference-radio-container">
-            <input type="radio" id="east-radio" name="standings-option" value="East">
+            <input type="radio" id="east-radio" name="standings-option" value="East" checked >
             <label for="east-radio">East</label>
             <input type="radio" id="west-radio" name="standings-option" value="West">
             <label for="west-radio">West</label>
@@ -39,16 +46,20 @@
             </div>
 
             <table id="current-standings-table" class="current-standings-table" style="display: none;">
-                <tr>
-                    <th>Team Name</th>
-                    <th>Seeding</th>
-                    <th>Record</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Seeding</th>
+                        <th>Team</th>
+                        <th>Record</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Current standings will be dynamically added here -->
+                </tbody>
             </table>
         </div>
     </div>
 </div>
-
 
 <!-- Import CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/current_standings.css') }}">

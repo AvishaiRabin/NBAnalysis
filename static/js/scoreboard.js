@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const upcomingGamesRows = upcomingGamesBody.querySelectorAll('tr');
 
             // Clear existing rows except the header row
-            for (let i = 1; i < upcomingGamesRows.length; i++) {
+            for (let i = 0; i < upcomingGamesRows.length; i++) {
                 upcomingGamesRows[i].remove();
             }
 
@@ -37,14 +37,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentStandingsRows = currentStandingsBody.querySelectorAll('tr');
 
             // Clear existing rows except the header row
-            for (let i = 1; i < currentStandingsRows.length; i++) {
+            for (let i = 0; i < currentStandingsRows.length; i++) {
                 currentStandingsRows[i].remove();
             }
 
             filteredData.standings.forEach(team => {
                 const row = currentStandingsBody.insertRow();
-                row.insertCell().textContent = team.TeamName;
                 row.insertCell().textContent = team.PlayoffRank;
+
+                // Create an image element
+                const teamImage = document.createElement('img');
+                // Set the src attribute to the PNG file path
+                teamImage.src = `static/img/${team.TeamName}.png`; // Adjust the path accordingly
+                // Set other attributes if needed, like alt text
+                teamImage.alt = team.TeamName; // Use the team name as alt text
+                // Append the image element to the cell
+                row.insertCell().appendChild(teamImage);
+
                 row.insertCell().textContent = team.Record;
             });
 
@@ -53,8 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentStandingsTable.style.display = 'table';
         }
 
-
-
         // Function to filter data based on selected option
         function filterData(data, value) {
             return {
@@ -62,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 standings: data.standings.filter(team => team['Conference'] === value)
             }
         }
-
 
         // Add event listener to radio inputs within radio-container
         document.querySelectorAll('.conference-radio-container input[type="radio"]').forEach(radio => {
@@ -73,7 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Initial population of tables with all data
-        populateTables(data);
+        const defaultFilterValue = 'East'; // Change this to your default filter value
+        const filteredData = filterData(data, defaultFilterValue);
+        populateTables(filteredData);
     })
     .catch(error => {
         console.error('Error fetching data:', error);
