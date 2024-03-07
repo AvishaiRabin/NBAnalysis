@@ -1,55 +1,69 @@
-.upcoming-games {
-    max-width: 33%;
-    margin-left: auto; /* Auto margin to push it to the right */
-    margin-right: 20px; /* Adjust spacing between containers */
-    height: 60vh;
-    overflow-y: auto;
+.games-wrapper {
+    height: 55vh;
+    width: 35%;
     position: fixed;
     top: 10%;
-    left: 2%; /* Position relative to the left edge of the viewport */
-    background-color: #f8f8f8;
-    color: black;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    left: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.upcoming-games {
+    width: 100%;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    flex: 1;
+    margin-left: 10px;
+    overflow-y: auto; /* Hide overflow content */
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.upcoming-games-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 .upcoming-games-table {
     width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    height: 50%;
 }
-.upcoming-games h2 {
-    margin-bottom: 20px;
-    font-size: 36px;
-    color: #333;
+
+.upcoming-games th {
+    background-color: #47a0ff;
     text-align: center;
+    width: 33%;
+    top: 0; /* Add this */
+    z-index: 1;
+    padding: 9px;
+    position: sticky; /* Add this */
+}
+
+.upcoming-games td {
+    padding: 15px; /* Adjust the padding to make cells bigger */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.upcoming-games tbody tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.games-title h2 {
+    font-size: 25px;
+    color: #333;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.upcoming-games th {
-    background-color: #f2f2f2;
-}
-
-.upcoming-games td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-.upcoming-games tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-.upcoming-games tbody tr:hover {
-    background-color: #e0e0e0;
-    transition: background-color 0.3s ease;
-}
 .upcoming-games .loading-widget {
     text-align: center;
     margin-top: 20px;

@@ -20,7 +20,6 @@ def index():
 def get_data():
     scoreboard = get_today_scoreboard()
     standings = get_standings()
-    print(standings)
     return jsonify({
         'upcomingGames': scoreboard.to_dict(orient='records'),
         'standings': standings.to_dict(orient='records')

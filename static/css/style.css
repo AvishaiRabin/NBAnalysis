@@ -63,6 +63,33 @@ h1 {
     margin-left: 20px; /* Adjust spacing between containers */
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Radius of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar handle on hover */
+}
+
+/* Button */
+::-webkit-scrollbar-button {
+  display: none; /* Hide the scrollbar buttons (arrows) */
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: transparent; /* Background color of the scrollbar corner */
+}
+
+
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
