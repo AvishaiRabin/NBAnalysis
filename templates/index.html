@@ -16,7 +16,8 @@
                 <tr>
                     <th>Start Time</th>
                     <th>Game Time</th>
-                    <th>Matchup</th>
+                    <th>Home</th>
+                    <th>Away</th>
                     <th>Score</th>
                 </tr>
             </thead>
@@ -26,18 +27,23 @@
         </table>
     </div>
 </div>
-
+<div class="team-metrics-container">
+    <h2 class="plot-title">{% block title %} Team Metrics {% endblock %}</h2>
+    <div class="metrics-plot-container">
+        <div id="team-metrics-chart" class="plot-chart"></div>
+    </div>
+</div>
 <div class="standings-wrapper">
     <div class="standings-title">
         <h2>Current Standings</h2>
     </div>
-    <div class="content-wrapper">
-        <div class="conference-radio-container">
+            <div class="conference-radio-container">
             <input type="radio" id="east-radio" name="standings-option" value="East" checked >
             <label for="east-radio">East</label>
             <input type="radio" id="west-radio" name="standings-option" value="West">
             <label for="west-radio">West</label>
         </div>
+    <div class="content-wrapper">
         <div class="current-standings">
             <!-- Loading Widget -->
             <div class="loading-widget" id="loading-widget-standings">
@@ -64,5 +70,6 @@
 <!-- Import CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/current_standings.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/upcoming_games.css') }}">
-<script type="module" src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/team_metrics.css') }}">
+<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
