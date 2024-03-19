@@ -1,7 +1,7 @@
 /* General styling for standings wrapper */
 .standings-wrapper {
     height: 55vh;
-    width: 35%;
+    width: 28%;
     position: fixed;
     top: 10%;
     right: 2%;
@@ -13,7 +13,6 @@
 /* Styling for the table title */
 .standings-title {
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .standings-title h2 {
@@ -33,10 +32,6 @@
     width: 100%;
 }
 
-/* Styling for radio container and current standings */
-.conference-radio-container, .current-standings {
-    margin-top: 10px;
-}
 
 /* Styling for current standings table */
 .current-standings {
@@ -113,7 +108,7 @@
 /* Styling for radio container */
 .conference-radio-container {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .conference-radio-container input {

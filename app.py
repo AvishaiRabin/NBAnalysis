@@ -20,9 +20,11 @@ def index():
 def get_data():
     scoreboard = get_today_scoreboard()
     standings = get_standings()
+    team_metrics = get_team_metrics()
     return jsonify({
         'upcomingGames': scoreboard.to_dict(orient='records'),
-        'standings': standings.to_dict(orient='records')
+        'standings': standings.to_dict(orient='records'),
+        'metrics': team_metrics.to_dict(orient='records')
     })
 
 @app.route('/standings/')

@@ -42,10 +42,6 @@ def update_team_logs_db(year=None):
     # Call the function to fetch all teams
     tbl = get_team_logs_by_year()
 
-    for i in tbl.columns:
-        print(i)
-        print(tbl[i])
-
     # Establishing a connection to the database
     connection = establish_connection('../dbs/team_logs.db')
     cursor = connection.cursor()
@@ -76,8 +72,8 @@ def update_team_logs_db(year=None):
         connection.close()
 
 # Init
-create_players_db()
-create_teams_db()
+# create_players_db()
+# create_teams_db()
 create_team_logs_db()
 # Updates the team logs
-update_team_logs_db()
+update_team_logs_db(2023)

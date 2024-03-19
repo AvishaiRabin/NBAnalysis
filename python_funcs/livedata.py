@@ -1,7 +1,8 @@
 from datetime import timezone
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
-from nba_api.stats.endpoints import leaguestandingsv3
+from nba_api.stats.endpoints import leaguestandingsv3, teamestimatedmetrics
+from python_funcs.sql_helper import get_db_connection
 import pandas as pd
 
 def time_converter(time_str):
@@ -28,7 +29,8 @@ def get_today_scoreboard():
         this_game = {
             'start_time': time_converter(game['gameTimeUTC']),
             'game_status_text': game['gameStatusText'],
-            'matchup': f"{game['homeTeam']['teamName']}@{game['awayTeam']['teamName']}",
+            'home_team': game['homeTeam']['teamName'],
+            'away_team': game['awayTeam']['teamName'],
             'score': f"{game['homeTeam']['score']}-{game['awayTeam']['score']}",
             'home_standings': f"{game['homeTeam']['wins']} - {game['homeTeam']['losses']}",
             'away_standings': f"{game['awayTeam']['wins']} - {game['homeTeam']['losses']}"
@@ -47,3 +49,27 @@ def get_standings(year=2023):
     standings = standings[['TeamName', 'Conference', 'PlayoffRank', 'Division', 'Record', 'L10', 'ConferenceGamesBack']]
 
     return standings
+
+def get_team_metrics():
+    """
+    Query's a given season's team ratings.  E.g. returns a list of teams and their OFFRTG, DEFTG, NETRTG, etc
+    """
+
+    conn = get_db_connection('players')
+    teams = conn.execute('SELECT id, nickname FROM teams').fetchall()
+    conn.close()
+    teams = pd.DataFrame(teams, columns=['TEAM_ID', 'TEAM'])
+
+    tbl = teamestimatedmetrics.TeamEstimatedMetrics(league_id='00').get_data_frames()[0]
+
+    tbl = tbl[['TEAM_NAME', 'TEAM_ID', 'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_PACE', 'E_AST_RATIO', 'E_OREB_PCT',
+         'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'E_OFF_RATING_RANK',
+         'E_DEF_RATING_RANK', 'E_NET_RATING_RANK', 'E_AST_RATIO_RANK',
+         'E_OREB_PCT_RANK', 'E_DREB_PCT_RANK', 'E_REB_PCT_RANK',
+         'E_TM_TOV_PCT_RANK', 'E_PACE_RANK']]
+
+    tbl = pd.merge(tbl, teams, on='TEAM_ID')
+
+    return tbl
+
+

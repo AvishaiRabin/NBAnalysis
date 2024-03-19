@@ -53,6 +53,8 @@ def get_team_logs_by_year(year=2023):
 
     final_teams_data['season'] = year
 
+    final_teams_data = final_teams_data[final_teams_data['WL'].notnull()]
+
     return final_teams_data
 
 def get_league_stats():
@@ -69,5 +71,3 @@ def get_league_stats():
         })
     conn.close()
     return league_data
-
-get_league_stats()

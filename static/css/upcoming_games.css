@@ -1,6 +1,6 @@
 .games-wrapper {
-    height: 55vh;
-    width: 35%;
+    height: 70vh;
+    width: 30%;
     position: fixed;
     top: 10%;
     left: 2%;
@@ -36,12 +36,14 @@
 
 .upcoming-games th {
     background-color: #47a0ff;
+    color: #333;
+    font-weight: bold;
     text-align: center;
-    width: 33%;
-    top: 0; /* Add this */
-    z-index: 1;
-    padding: 9px;
-    position: sticky; /* Add this */
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the header is on top */
+    line-height: 40px; /* Adjust the line height to match the height of table rows */
 }
 
 .upcoming-games td {
@@ -53,6 +55,12 @@
 .upcoming-games tbody tr:hover {
     background-color: #e0e0e0;
     transition: background-color 0.3s ease;
+}
+
+/* Styling for images within current standings */
+.upcoming-games img {
+    max-width: 50px;
+    max-height: 50px;
 }
 
 .games-title h2 {
